@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "paths": { "*": ["types/*"] },
+    "module": "commonjs",
+    "declaration": false,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "noLib": false,
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es6",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./src",
+    "resolveJsonModule": true,
+  },
+  "include": [
+    "src/**/*", "ignored/app.controller.spec.ts", "ignored/main.hmr.ts", "ignored/app.service.ts", "ignored/app.controller.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.specs.ts"
+  ]
+}
