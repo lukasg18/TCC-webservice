@@ -1,11 +1,11 @@
 import { Module, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { SelecaoModule } from './selecao-aluno/selecao.module';
+import { IdentidadeModule } from './identidade-cidada/identidade.module';
 
 
 @Module({
-  imports: [SelecaoModule],
+  imports: [IdentidadeModule],
   controllers: [AppController],
   providers: [AppService],
 })
