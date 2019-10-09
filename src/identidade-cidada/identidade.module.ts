@@ -9,4 +9,4 @@ const modelProvider = [...databaseProviders];
   providers: [...modelProvider],
   controllers: [],
 })
-export class SelecaoModule {}
+export class IdentidadeModule {}
