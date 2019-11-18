@@ -19,6 +19,9 @@ export class Pessoa extends Auditoria {
   @Column({ type: 'varchar', length: 250 })
   nome: string;
 
+  @Column({ type: 'varchar', length: 20 })
+  cpf: string;
+
   @Column({ name: 'datanascimento', type: 'date' })
   dataNascimento: Date;
 
