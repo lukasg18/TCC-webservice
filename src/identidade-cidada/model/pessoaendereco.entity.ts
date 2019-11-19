@@ -6,22 +6,32 @@ import {
   Index,
   BaseEntity,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
+  CreateDateColumn,
+  PrimaryColumn,
 } from 'typeorm';
 import { Pessoa } from './pessoa.entity';
 import { Endereco } from './endereco.entity';
+import { Auditoria } from './Auditoria.entity';
 
 @Entity()
-export class Pessoa_endereco extends BaseEntity {
-  @PrimaryGeneratedColumn({ type: 'int' })
-  id: number;
+export class Pessoa_endereco {
+  @PrimaryColumn()
+  pessoaid: number;
 
-  @Column({ type: 'timestamp' })
-  data: Date;
+  @PrimaryColumn()
+  enderecoid: number;
+
+  @CreateDateColumn({ type: 'timestamp', nullable: false })
+  dataregistro: Date;
+
+  @UpdateDateColumn({ type: 'timestamp', nullable: false })
+  atualizadoem: Date;
 
   @ManyToOne(type => Pessoa, pessoa => pessoa.id)
   @JoinColumn({ name: 'pessoaid' })
   @Index('pessoaid_pessoa_endereco_index')
-  municipio: Pessoa;
+  pessoa: Pessoa;
 
   @ManyToOne(type => Endereco, endereco => endereco.id)
   @JoinColumn({ name: 'enderecoid' })
