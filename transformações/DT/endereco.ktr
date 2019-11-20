@@ -6,7 +6,6 @@
     <extended_description />
     <trans_version />
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -428,23 +427,23 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2018/12/07 15:29:34.427</created_date>
+    <created_date>2019/11/19 22:21:30.238</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018/12/07 15:29:34.427</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <modified_date>2019/11/19 22:21:30.238</modified_date>
+    <key_for_session_key />
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <connection>
-    <name>bancoSQL</name>
-    <server>10.244.0.126</server>
-    <type>MSSQLNATIVE</type>
+    <name>identidade-cidada</name>
+    <server>localhost</server>
+    <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>Selecao</database>
-    <port>1433</port>
-    <username>PRODEST\magno.oliveira</username>
-    <password>Encrypted 2f3d8c8a65a96c3d1f34ff72386c5f88a</password>
+    <database>identiade-cidada-v2</database>
+    <port>5432</port>
+    <username>postgres</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -462,16 +461,8 @@
         <attribute>N</attribute>
       </attribute>
       <attribute>
-        <code>MSSQLUseIntegratedSecurity</code>
-        <attribute>true</attribute>
-      </attribute>
-      <attribute>
-        <code>MSSQL_DOUBLE_DECIMAL_SEPARATOR</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>1433</attribute>
+        <attribute>5432</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -496,12 +487,12 @@
     </attributes>
   </connection>
   <connection>
-    <name>BancoSQLIdentidadeCidada</name>
-    <server>10.243.9.12</server>
+    <name>selecao-dt</name>
+    <server>localhost</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
     <database>identidade_cidada</database>
-    <port>443</port>
+    <port>5432</port>
     <username>postgres</username>
     <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
     <servername />
@@ -522,7 +513,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>443</attribute>
+        <attribute>5432</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -548,39 +539,34 @@
   </connection>
   <order>
     <hop>
-      <from>Group by</from>
+      <from>Merge Join</from>
       <to>insert - Table Endereco</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Filter rows</from>
-      <to>Sort rows 3</to>
+      <from>Sort rows</from>
+      <to>Merge Join</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fuzzy match</from>
-      <to>Filter rows</to>
+      <from>Sort rows 2</from>
+      <to>Merge Join</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Table input (Pegando dados dos enderecos no banco origem)</from>
-      <to>Fuzzy match</to>
+      <from>Table input - Cidades do selecao dt</from>
+      <to>Sort rows</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Table input</from>
-      <to>Fuzzy match</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sort rows 3</from>
-      <to>Group by</to>
+      <from>Table input - id estados novo_selecao</from>
+      <to>Sort rows 2</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Filter rows</name>
-    <type>FilterRows</type>
+    <name>Merge Join</name>
+    <type>MergeJoin</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -589,16 +575,15 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>Sort rows 3</send_true_to>
-    <send_false_to />
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>match</leftvalue>
-        <function>IS NOT NULL</function>
-        <rightvalue />
-      </condition>
-    </compare>
+    <join_type>INNER</join_type>
+    <step1>Sort rows</step1>
+    <step2>Sort rows 2</step2>
+    <keys_1>
+      <key>municipio</key>
+    </keys_1>
+    <keys_2>
+      <key>municipio</key>
+    </keys_2>
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -608,131 +593,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>416</yloc>
+      <xloc>688</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Fuzzy match</name>
-    <type>FuzzyMatch</type>
-    <description />
-    <distribute>N</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <from>Table input</from>
-    <lookupfield>municipio</lookupfield>
-    <mainstreamfield>cidade_higienizado</mainstreamfield>
-    <outputmatchfield>match</outputmatchfield>
-    <outputvaluefield>measure value</outputvaluefield>
-    <caseSensitive>N</caseSensitive>
-    <closervalue>Y</closervalue>
-    <minimalValue>0.9</minimalValue>
-    <maximalValue>1</maximalValue>
-    <separator>,</separator>
-    <algorithm>jarowinkler</algorithm>
-    <lookup>
-      <value>
-        <name>id_municipio</name>
-        <rename>municipioid</rename>
-      </value>
-    </lookup>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Group by</name>
-    <type>GroupBy</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <all_rows>N</all_rows>
-    <ignore_aggregate>N</ignore_aggregate>
-    <field_ignore />
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>grp</prefix>
-    <add_linenr>N</add_linenr>
-    <linenr_fieldname />
-    <give_back_row>N</give_back_row>
-    <group>
-      <field>
-        <name>numerocpf</name>
-      </field>
-    </group>
-    <fields>
-      <field>
-        <aggregate>logradouro</aggregate>
-        <subject>logradouro</subject>
-        <type>LAST_INCL_NULL</type>
-        <valuefield />
-      </field>
-      <field>
-        <aggregate>numero</aggregate>
-        <subject>numero</subject>
-        <type>LAST_INCL_NULL</type>
-        <valuefield />
-      </field>
-      <field>
-        <aggregate>complemento</aggregate>
-        <subject>complemento</subject>
-        <type>LAST_INCL_NULL</type>
-        <valuefield />
-      </field>
-      <field>
-        <aggregate>bairro</aggregate>
-        <subject>bairro</subject>
-        <type>LAST_INCL_NULL</type>
-        <valuefield />
-      </field>
-      <field>
-        <aggregate>cep</aggregate>
-        <subject>cep</subject>
-        <type>LAST_INCL_NULL</type>
-        <valuefield />
-      </field>
-      <field>
-        <aggregate>municipioid</aggregate>
-        <subject>municipioid</subject>
-        <type>LAST_INCL_NULL</type>
-        <valuefield />
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>496</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Sort rows 3</name>
+    <name>Sort rows</name>
     <type>SortRows</type>
     <description />
     <distribute>Y</distribute>
@@ -751,7 +618,7 @@
     <unique_rows>N</unique_rows>
     <fields>
       <field>
-        <name>numerocpf</name>
+        <name>municipio</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -759,7 +626,7 @@
         <presorted>N</presorted>
       </field>
       <field>
-        <name>datainscricao</name>
+        <name>bairro</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -776,14 +643,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>496</xloc>
-      <yloc>416</yloc>
+      <xloc>416</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Table input</name>
-    <type>TableInput</type>
+    <name>Sort rows 2</name>
+    <type>SortRows</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -792,16 +659,23 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>BancoSQLIdentidadeCidada</connection>
-    <sql>SELECT
-  id as id_municipio
-, nome as municipio
-FROM municipio</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>municipio</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -811,46 +685,29 @@ FROM municipio</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>64</xloc>
-      <yloc>416</yloc>
+      <xloc>416</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Table input (Pegando dados dos enderecos no banco origem)</name>
+    <name>Table input - Cidades do selecao dt</name>
     <type>TableInput</type>
     <description />
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>bancoSQL</connection>
+    <connection>selecao-dt</connection>
     <sql>SELECT
-  numerocpf
-, datainscricao
-, logradouro
-, numero
-, complemento
-, bairro
-, RTRIM( REPLACE(LOWER(cidade),  
- 					'áàâãäåaaaÁÂÃÄÅAAAÀéèêëeeeeeEEEÉEEÈìíîïìiiiÌÍÎÏÌIIIóôõöoooòÒÓÔÕÖOOOùúûüuuuuÙÚÛÜUUUUçÇñÑýÝ/*-+.,|\/>&lt;()0123456789 ^~´`ºª[]{}:?°%$#@!',  
- 					'aaaaaaaaaAAAAAAAAAeeeeeeeeeEEEEEEEiiiiiiiiIIIIIIIIooooooooOOOOOOOOuuuuuuuuUUUUUUUUcCnNyY'   
-  )) as cidade_higienizado
-, cep
-FROM inscricao
-GROUP BY   numerocpf
-			, datainscricao
-			, logradouro
-			, numero
-			, complemento
-			, bairro
-			, cidade
-			, ufenderecoid
-			, cep
-ORDER BY numerocpf, datainscricao
+  endereco.bairro
+, municipio.nome as municipio
+FROM endereco
+inner join municipio on (municipio.id = endereco.municipioid)
+GROUP BY   endereco.bairro, municipio.nome
 </sql>
     <limit>0</limit>
     <lookup />
@@ -866,8 +723,44 @@ ORDER BY numerocpf, datainscricao
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>256</yloc>
+      <xloc>192</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Table input - id estados novo_selecao</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>selecao-dt</connection>
+    <sql>SELECT
+id,
+nome as municipio
+FROM municipio
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>192</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -882,76 +775,32 @@ ORDER BY numerocpf, datainscricao
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>BancoSQLIdentidadeCidada</connection>
+    <connection>identidade-cidada</connection>
     <commit>10000</commit>
     <update_bypassed>N</update_bypassed>
     <lookup>
-      <schema />
-      <table>endereco</table>
-      <key>
-        <name>logradouro</name>
-        <field>logradouro</field>
-        <condition>=</condition>
-        <name2 />
-      </key>
-      <key>
-        <name>numero</name>
-        <field>numero</field>
-        <condition>=</condition>
-        <name2 />
-      </key>
-      <key>
-        <name>complemento</name>
-        <field>complemento</field>
-        <condition>=</condition>
-        <name2 />
-      </key>
+      <schema>public</schema>
+      <table>bairro</table>
       <key>
         <name>bairro</name>
-        <field>bairro</field>
+        <field>nome</field>
         <condition>=</condition>
         <name2 />
       </key>
       <key>
-        <name>cep</name>
-        <field>cep</field>
-        <condition>=</condition>
-        <name2 />
-      </key>
-      <key>
-        <name>municipioid</name>
+        <name>id</name>
         <field>municipioid</field>
         <condition>=</condition>
         <name2 />
       </key>
       <value>
-        <name>logradouro</name>
-        <rename>logradouro</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>numero</name>
-        <rename>numero</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>complemento</name>
-        <rename>complemento</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>bairro</name>
+        <name>nome</name>
         <rename>bairro</rename>
         <update>Y</update>
       </value>
       <value>
-        <name>cep</name>
-        <rename>cep</rename>
-        <update>Y</update>
-      </value>
-      <value>
         <name>municipioid</name>
-        <rename>municipioid</rename>
+        <rename>id</rename>
         <update>Y</update>
       </value>
     </lookup>
@@ -964,8 +813,8 @@ ORDER BY numerocpf, datainscricao
       </output>
     </remotesteps>
     <GUI>
-      <xloc>752</xloc>
-      <yloc>272</yloc>
+      <xloc>960</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

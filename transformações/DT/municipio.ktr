@@ -437,12 +437,12 @@
   <notepads>
   </notepads>
   <connection>
-    <name>BancoSQLIdentidadeCidada</name>
-    <server>10.243.9.12</server>
+    <name>identidade-cidada</name>
+    <server>localhost</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>identidade_cidada</database>
-    <port>443</port>
+    <database>identiade-cidada-v2</database>
+    <port>5432</port>
     <username>postgres</username>
     <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
     <servername />
@@ -463,7 +463,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>443</attribute>
+        <attribute>5432</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -488,14 +488,14 @@
     </attributes>
   </connection>
   <connection>
-    <name>BD-CEP</name>
-    <server>10.243.44.6</server>
-    <type>MSSQLNATIVE</type>
+    <name>selecao-dt</name>
+    <server>localhost</server>
+    <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>CEP</database>
-    <port>1433</port>
-    <username>Apl_CEP</username>
-    <password>Encrypted 2be98afc86aa7f2e4b138ba56ec9d9bf7</password>
+    <database>identidade_cidada</database>
+    <port>5432</port>
+    <username>postgres</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -513,16 +513,8 @@
         <attribute>N</attribute>
       </attribute>
       <attribute>
-        <code>MSSQLUseIntegratedSecurity</code>
-        <attribute>false</attribute>
-      </attribute>
-      <attribute>
-        <code>MSSQL_DOUBLE_DECIMAL_SEPARATOR</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>1433</attribute>
+        <attribute>5432</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -588,7 +580,7 @@
     <step1>Sort rows</step1>
     <step2>Sort rows 2</step2>
     <keys_1>
-      <key>uf</key>
+      <key>sigla</key>
     </keys_1>
     <keys_2>
       <key>sigla</key>
@@ -627,7 +619,7 @@
     <unique_rows>N</unique_rows>
     <fields>
       <field>
-        <name>uf</name>
+        <name>sigla</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -710,13 +702,13 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>BD-CEP</connection>
+    <connection>selecao-dt</connection>
     <sql>SELECT
-  cidade.nome
-, estado.uf
-FROM cidade
-inner join estado on (estado.id = cidade.estadoid)
-GROUP BY   cidade.nome, estado.uf
+  municipio.nome
+, estado.sigla
+FROM municipio
+inner join estado on (estado.id = municipio.estadoid)
+GROUP BY     municipio.nome, estado.sigla
 </sql>
     <limit>0</limit>
     <lookup />
@@ -748,7 +740,7 @@ GROUP BY   cidade.nome, estado.uf
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>BancoSQLIdentidadeCidada</connection>
+    <connection>selecao-dt</connection>
     <sql>SELECT
   id
 , sigla
@@ -784,11 +776,11 @@ FROM estado
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>BancoSQLIdentidadeCidada</connection>
+    <connection>identidade-cidada</connection>
     <commit>10000</commit>
     <update_bypassed>N</update_bypassed>
     <lookup>
-      <schema />
+      <schema>public</schema>
       <table>municipio</table>
       <key>
         <name>nome</name>
