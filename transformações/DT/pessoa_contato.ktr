@@ -437,14 +437,14 @@
   <notepads>
   </notepads>
   <connection>
-    <name>bancoSQL</name>
-    <server>10.244.0.126</server>
-    <type>MSSQLNATIVE</type>
+    <name>identidade-cidada</name>
+    <server>localhost</server>
+    <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>Selecao</database>
-    <port>1433</port>
-    <username>PRODEST\magno.oliveira</username>
-    <password>Encrypted 2f3d8c8a65a96c3d1f34ff72386c5f88a</password>
+    <database>identiade-cidada-v2</database>
+    <port>5432</port>
+    <username>postgres</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -462,16 +462,8 @@
         <attribute>N</attribute>
       </attribute>
       <attribute>
-        <code>MSSQLUseIntegratedSecurity</code>
-        <attribute>true</attribute>
-      </attribute>
-      <attribute>
-        <code>MSSQL_DOUBLE_DECIMAL_SEPARATOR</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>1433</attribute>
+        <attribute>5432</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -496,12 +488,12 @@
     </attributes>
   </connection>
   <connection>
-    <name>BancoSQLIdentidadeCidada</name>
-    <server>10.243.9.12</server>
+    <name>selecao-antigo</name>
+    <server>localhost</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>identidade_cidada</database>
-    <port>443</port>
+    <database>selecao</database>
+    <port>5432</port>
     <username>postgres</username>
     <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
     <servername />
@@ -522,7 +514,58 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>443</attribute>
+        <attribute>5432</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>selecao-dt</name>
+    <server>localhost</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>identidade_cidada</database>
+    <port>5432</port>
+    <username>postgres</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
+    <servername />
+    <data_tablespace />
+    <index_tablespace />
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>5432</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -573,11 +616,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Merge Join 4</from>
-      <to>Insert / Update</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Group by</from>
       <to>Sort rows 4</to>
       <enabled>Y</enabled>
@@ -585,6 +623,11 @@
     <hop>
       <from>Sort rows 4</from>
       <to>Merge Join 4</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge Join 4</from>
+      <to>Insert / update 2</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -637,60 +680,6 @@
     <GUI>
       <xloc>592</xloc>
       <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Insert / Update</name>
-    <type>InsertUpdate</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>BancoSQLIdentidadeCidada</connection>
-    <commit>10000</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema />
-      <table>pessoa_contato</table>
-      <key>
-        <name>id_pessoa</name>
-        <field>pessoaid</field>
-        <condition>=</condition>
-        <name2 />
-      </key>
-      <key>
-        <name>id_contato</name>
-        <field>contatoid</field>
-        <condition>=</condition>
-        <name2 />
-      </key>
-      <value>
-        <name>pessoaid</name>
-        <rename>id_pessoa</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>contatoid</name>
-        <rename>id_contato</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>816</xloc>
-      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -865,13 +854,13 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>BancoSQLIdentidadeCidada</connection>
+    <connection>selecao-dt</connection>
     <sql>SELECT
   id as id_contato
 , contato
 FROM contato
 ORDER BY contato
-</sql>
+limit 30000</sql>
     <limit>0</limit>
     <lookup />
     <execute_each_row>N</execute_each_row>
@@ -902,12 +891,13 @@ ORDER BY contato
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>BancoSQLIdentidadeCidada</connection>
+    <connection>selecao-dt</connection>
     <sql>SELECT
   id
 , numerocpf as  numcpf
 FROM pessoa
 ORDER BY numerocpf
+limit 30000
 </sql>
     <limit>0</limit>
     <lookup />
@@ -939,7 +929,7 @@ ORDER BY numerocpf
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>bancoSQL</connection>
+    <connection>selecao-antigo</connection>
     <sql>SELECT
   numerocpf
 , datainscricao
@@ -948,6 +938,7 @@ FROM inscricao
 WHERE telefone1 is not null
 GROUP BY numerocpf, datainscricao, telefone1
 ORDER BY numerocpf  
+limit 30000
 </sql>
     <limit>0</limit>
     <lookup />
@@ -965,6 +956,60 @@ ORDER BY numerocpf
     <GUI>
       <xloc>368</xloc>
       <yloc>16</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Insert / update 2</name>
+    <type>InsertUpdate</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>identidade-cidada</connection>
+    <commit>100</commit>
+    <update_bypassed>N</update_bypassed>
+    <lookup>
+      <schema>public</schema>
+      <table>pessoa_contato</table>
+      <key>
+        <name>id_pessoa</name>
+        <field>pessoaid</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>id_contato</name>
+        <field>contatoid</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <value>
+        <name>pessoaid</name>
+        <rename>id_pessoa</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>contatoid</name>
+        <rename>id_contato</rename>
+        <update>N</update>
+      </value>
+    </lookup>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>816</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

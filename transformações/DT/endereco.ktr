@@ -430,7 +430,7 @@
     <created_date>2019/11/19 22:21:30.238</created_date>
     <modified_user>-</modified_user>
     <modified_date>2019/11/19 22:21:30.238</modified_date>
-    <key_for_session_key />
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -579,10 +579,10 @@
     <step1>Sort rows</step1>
     <step2>Sort rows 2</step2>
     <keys_1>
-      <key>municipio</key>
+      <key>bairro</key>
     </keys_1>
     <keys_2>
-      <key>municipio</key>
+      <key>bairro</key>
     </keys_2>
     <attributes />
     <cluster_schema />
@@ -617,14 +617,6 @@
     <compress_variable />
     <unique_rows>N</unique_rows>
     <fields>
-      <field>
-        <name>municipio</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
       <field>
         <name>bairro</name>
         <ascending>Y</ascending>
@@ -668,7 +660,7 @@
     <unique_rows>N</unique_rows>
     <fields>
       <field>
-        <name>municipio</name>
+        <name>bairro</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -703,11 +695,15 @@
     </partitioning>
     <connection>selecao-dt</connection>
     <sql>SELECT
-  endereco.bairro
-, municipio.nome as municipio
+	endereco.cep,
+	endereco.logradouro,
+	endereco.complemento,
+	endereco.numero,
+	endereco.bairro
 FROM endereco
 inner join municipio on (municipio.id = endereco.municipioid)
-GROUP BY   endereco.bairro, municipio.nome
+group by endereco.cep, endereco.logradouro, endereco.complemento, endereco.numero, endereco.bairro
+limit 1000
 </sql>
     <limit>0</limit>
     <lookup />
@@ -739,11 +735,12 @@ GROUP BY   endereco.bairro, municipio.nome
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>selecao-dt</connection>
+    <connection>identidade-cidada</connection>
     <sql>SELECT
 id,
-nome as municipio
-FROM municipio
+nome as bairro
+FROM bairro
+limit 1000
 </sql>
     <limit>0</limit>
     <lookup />
@@ -780,28 +777,43 @@ FROM municipio
     <update_bypassed>N</update_bypassed>
     <lookup>
       <schema>public</schema>
-      <table>bairro</table>
+      <table>endereco</table>
       <key>
-        <name>bairro</name>
-        <field>nome</field>
+        <name>cep</name>
+        <field>cep</field>
         <condition>=</condition>
         <name2 />
       </key>
       <key>
         <name>id</name>
-        <field>municipioid</field>
+        <field>bairroid</field>
         <condition>=</condition>
         <name2 />
       </key>
       <value>
-        <name>nome</name>
-        <rename>bairro</rename>
+        <name>cep</name>
+        <rename>cep</rename>
         <update>Y</update>
       </value>
       <value>
-        <name>municipioid</name>
-        <rename>id</rename>
+        <name>logradouro</name>
+        <rename>logradouro</rename>
         <update>Y</update>
+      </value>
+      <value>
+        <name>complemento</name>
+        <rename>complemento</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>numero</name>
+        <rename>numero</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>bairroid</name>
+        <rename>id</rename>
+        <update>N</update>
       </value>
     </lookup>
     <attributes />

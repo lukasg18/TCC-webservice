@@ -437,14 +437,14 @@
   <notepads>
   </notepads>
   <connection>
-    <name>bancoSQL</name>
-    <server>10.244.0.126</server>
-    <type>MSSQLNATIVE</type>
+    <name>identidade-cidada</name>
+    <server>localhost</server>
+    <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>Selecao</database>
-    <port>1433</port>
-    <username>PRODEST\magno.oliveira</username>
-    <password>Encrypted 2f3d8c8a65a96c3d1f34ff72386c5f88a</password>
+    <database>identiade-cidada-v2</database>
+    <port>5432</port>
+    <username>postgres</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -462,16 +462,8 @@
         <attribute>N</attribute>
       </attribute>
       <attribute>
-        <code>MSSQLUseIntegratedSecurity</code>
-        <attribute>true</attribute>
-      </attribute>
-      <attribute>
-        <code>MSSQL_DOUBLE_DECIMAL_SEPARATOR</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>1433</attribute>
+        <attribute>5432</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -496,12 +488,12 @@
     </attributes>
   </connection>
   <connection>
-    <name>BancoSQLIdentidadeCidada</name>
-    <server>10.243.9.12</server>
+    <name>selecao-antigo</name>
+    <server>localhost</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>identidade_cidada</database>
-    <port>443</port>
+    <database>selecao</database>
+    <port>5432</port>
     <username>postgres</username>
     <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
     <servername />
@@ -522,7 +514,58 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>443</attribute>
+        <attribute>5432</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>selecao-dt</name>
+    <server>localhost</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>identidade_cidada</database>
+    <port>5432</port>
+    <username>postgres</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
+    <servername />
+    <data_tablespace />
+    <index_tablespace />
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>5432</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -558,11 +601,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Merge Join 2</from>
-      <to>Insert / Update</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Sort rows</from>
       <to>Merge Join 2</to>
       <enabled>Y</enabled>
@@ -587,72 +625,12 @@
       <to>Merge Join</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Merge Join 2</from>
+      <to>Insert / update 2</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
-  <step>
-    <name>Insert / Update</name>
-    <type>InsertUpdate</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>BancoSQLIdentidadeCidada</connection>
-    <commit>100</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema />
-      <table>pessoa_endereco</table>
-      <key>
-        <name>pessoaid</name>
-        <field>pessoaid</field>
-        <condition>=</condition>
-        <name2 />
-      </key>
-      <key>
-        <name>enderecoid</name>
-        <field>enderecoid</field>
-        <condition>=</condition>
-        <name2 />
-      </key>
-      <key>
-        <name>datainscricao</name>
-        <field>data</field>
-        <condition>=</condition>
-        <name2 />
-      </key>
-      <value>
-        <name>enderecoid</name>
-        <rename>enderecoid</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>pessoaid</name>
-        <rename>pessoaid</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>data</name>
-        <rename>datainscricao</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1216</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>Merge Join</name>
     <type>MergeJoin</type>
@@ -701,7 +679,7 @@
     <name>Merge Join 2</name>
     <type>MergeJoin</type>
     <description />
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution />
     <copies>1</copies>
     <partitioning>
@@ -972,13 +950,13 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>BancoSQLIdentidadeCidada</connection>
+    <connection>selecao-dt</connection>
     <sql>SELECT
   id as pessoaid
 , numerocpf as numcpf
 FROM pessoa
 ORDER BY numerocpf
-</sql>
+limit 30000</sql>
     <limit>0</limit>
     <lookup />
     <execute_each_row>N</execute_each_row>
@@ -1009,7 +987,7 @@ ORDER BY numerocpf
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>BancoSQLIdentidadeCidada</connection>
+    <connection>selecao-dt</connection>
     <sql>SELECT
   endereco.id as enderecoid
 , bairro
@@ -1020,7 +998,8 @@ ORDER BY numerocpf
 , numero
 , estadoid
 FROM endereco
-INNER JOIN municipio ON (municipio.id = endereco.municipioid)</sql>
+INNER JOIN municipio ON (municipio.id = endereco.municipioid)
+limit 30000</sql>
     <limit>0</limit>
     <lookup />
     <execute_each_row>N</execute_each_row>
@@ -1051,7 +1030,7 @@ INNER JOIN municipio ON (municipio.id = endereco.municipioid)</sql>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>bancoSQL</connection>
+    <connection>selecao-antigo</connection>
     <sql>SELECT
   numerocpf
 , datainscricao
@@ -1071,7 +1050,8 @@ GROUP BY numerocpf
 		, bairro
 		, cidade
 		, ufenderecoid
-		, cep</sql>
+		, cep
+limit 30000</sql>
     <limit>0</limit>
     <lookup />
     <execute_each_row>N</execute_each_row>
@@ -1088,6 +1068,60 @@ GROUP BY numerocpf
     <GUI>
       <xloc>208</xloc>
       <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Insert / update 2</name>
+    <type>InsertUpdate</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>identidade-cidada</connection>
+    <commit>100</commit>
+    <update_bypassed>N</update_bypassed>
+    <lookup>
+      <schema>public</schema>
+      <table>pessoa_endereco</table>
+      <key>
+        <name>pessoaid</name>
+        <field>pessoaid</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <key>
+        <name>enderecoid</name>
+        <field>enderecoid</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <value>
+        <name>pessoaid</name>
+        <rename>pessoaid</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>enderecoid</name>
+        <rename>enderecoid</rename>
+        <update>N</update>
+      </value>
+    </lookup>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1200</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

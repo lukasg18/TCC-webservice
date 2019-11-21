@@ -437,14 +437,14 @@
   <notepads>
   </notepads>
   <connection>
-    <name>bancoSQL</name>
-    <server>10.244.0.126</server>
-    <type>MSSQLNATIVE</type>
+    <name>identidade-cidada</name>
+    <server>localhost</server>
+    <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>Selecao</database>
-    <port>1433</port>
-    <username>PRODEST\magno.oliveira</username>
-    <password>Encrypted 2f3d8c8a65a96c3d1f34ff72386c5f88a</password>
+    <database>identiade-cidada-v2</database>
+    <port>5432</port>
+    <username>postgres</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -462,16 +462,8 @@
         <attribute>N</attribute>
       </attribute>
       <attribute>
-        <code>MSSQLUseIntegratedSecurity</code>
-        <attribute>true</attribute>
-      </attribute>
-      <attribute>
-        <code>MSSQL_DOUBLE_DECIMAL_SEPARATOR</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>1433</attribute>
+        <attribute>5432</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -496,12 +488,12 @@
     </attributes>
   </connection>
   <connection>
-    <name>BancoSQLIdentidadeCidada</name>
-    <server>10.243.9.12</server>
+    <name>selecao-dt</name>
+    <server>localhost</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
     <database>identidade_cidada</database>
-    <port>443</port>
+    <port>5432</port>
     <username>postgres</username>
     <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
     <servername />
@@ -522,7 +514,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>443</attribute>
+        <attribute>5432</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -549,53 +541,10 @@
   <order>
     <hop>
       <from>Table input</from>
-      <to>Insert / Update</to>
+      <to>Insert / update</to>
       <enabled>Y</enabled>
     </hop>
   </order>
-  <step>
-    <name>Insert / Update</name>
-    <type>InsertUpdate</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>BancoSQLIdentidadeCidada</connection>
-    <commit>100</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema />
-      <table>tipo_documento</table>
-      <key>
-        <name>descricao</name>
-        <field>nome</field>
-        <condition>=</condition>
-        <name2 />
-      </key>
-      <value>
-        <name>nome</name>
-        <rename>descricao</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>Table input</name>
     <type>TableInput</type>
@@ -607,11 +556,10 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>bancoSQL</connection>
+    <connection>selecao-dt</connection>
     <sql>SELECT
-  tipoidentidadeid
-, descricao
-FROM tipoidentidade
+  nome
+FROM tipo_documento
 </sql>
     <limit>0</limit>
     <lookup />
@@ -627,8 +575,51 @@ FROM tipoidentidade
       </output>
     </remotesteps>
     <GUI>
-      <xloc>192</xloc>
-      <yloc>272</yloc>
+      <xloc>128</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Insert / update</name>
+    <type>InsertUpdate</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>identidade-cidada</connection>
+    <commit>100</commit>
+    <update_bypassed>N</update_bypassed>
+    <lookup>
+      <schema>public</schema>
+      <table>tipo_documento</table>
+      <key>
+        <name>nome</name>
+        <field>nome</field>
+        <condition>=</condition>
+        <name2 />
+      </key>
+      <value>
+        <name>nome</name>
+        <rename>nome</rename>
+        <update>Y</update>
+      </value>
+    </lookup>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>320</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
