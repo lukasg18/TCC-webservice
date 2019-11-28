@@ -11,16 +11,16 @@ export class Endereco extends Auditoria {
   @Index("cep_index")
   cep: string;
 
-  @Column({ type: "varchar", length: 500 })
+  @Column({ type: "varchar", length: 500, nullable: true })
   logradouro: string;
 
   @Column({ type: "varchar", length: 500, nullable: true })
   complemento: string;
 
-  @Column({ type: "int" })
+  @Column({ type: "int", nullable: true })
   numero: number;
 
-  @OneToMany(type => Pessoa_endereco, pessoa_endereco => pessoa_endereco.id)
+  @OneToMany(type => Pessoa_endereco, pessoa_endereco => pessoa_endereco.enderecoid)
   pessoa_endereco: Pessoa_endereco[];
 
   @ManyToOne(type => Bairro, bairro => bairro.endereco)

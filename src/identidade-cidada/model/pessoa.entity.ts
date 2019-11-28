@@ -19,13 +19,13 @@ export class Pessoa extends Auditoria {
   @Column({ type: 'varchar', length: 250 })
   nome: string;
 
-  @Column({ type: 'varchar', length: 20 })
+  @Column({ type: 'varchar', length: 250 })
   cpf: string;
 
   @Column({ name: 'datanascimento', type: 'date' })
   dataNascimento: Date;
 
-  @OneToMany(type => Pessoa_endereco, pessoa_endereco => pessoa_endereco.id)
+  @OneToMany(type => Pessoa_endereco, pessoa_endereco => pessoa_endereco.enderecoid)
   pessoa_endereco: Pessoa_endereco[];
 
   @ManyToMany(type => Contato)

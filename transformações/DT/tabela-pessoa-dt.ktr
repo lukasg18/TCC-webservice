@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>documento</name>
+    <name>tabela-pessoa-dt</name>
     <description />
     <extended_description />
     <trans_version />
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -428,9 +427,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2018/12/07 14:20:02.505</created_date>
+    <created_date>2019/11/08 10:03:10.976</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018/12/07 14:20:02.505</modified_date>
+    <modified_date>2019/11/08 10:03:10.976</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -441,58 +440,7 @@
     <server>localhost</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>identiade-cidada-v2</database>
-    <port>5432</port>
-    <username>postgres</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
-    <servername />
-    <data_tablespace />
-    <index_tablespace />
-    <attributes>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>5432</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
-  <connection>
-    <name>selecao-antigo</name>
-    <server>localhost</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>selecao</database>
+    <database>identiade-cidada-v3</database>
     <port>5432</port>
     <username>postgres</username>
     <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
@@ -591,290 +539,18 @@
   </connection>
   <order>
     <hop>
-      <from>Merge Join</from>
-      <to>Sort rows</to>
+      <from>selecao_dt</from>
+      <to>Select values 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Sort rows</from>
-      <to>Group by</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Group by</from>
-      <to>Insert / update 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Table input (Pegando dados dos documentos dos candidatos no banco original)</from>
-      <to>Sort rows 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sort rows 2</from>
-      <to>Merge Join</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Table input (Pegando dados da pessoa no novo banco)</from>
-      <to>Sort rows 2 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sort rows 2 2</from>
-      <to>Merge Join</to>
+      <from>Select values 2</from>
+      <to>Insert / update</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Group by</name>
-    <type>GroupBy</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <all_rows>N</all_rows>
-    <ignore_aggregate>N</ignore_aggregate>
-    <field_ignore />
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>grp</prefix>
-    <add_linenr>N</add_linenr>
-    <linenr_fieldname />
-    <give_back_row>N</give_back_row>
-    <group>
-      <field>
-        <name>numerocpf</name>
-      </field>
-    </group>
-    <fields>
-      <field>
-        <aggregate>pessoaid</aggregate>
-        <subject>pessoaid</subject>
-        <type>LAST_INCL_NULL</type>
-        <valuefield />
-      </field>
-      <field>
-        <aggregate>numeroidentidade</aggregate>
-        <subject>numeroidentidade</subject>
-        <type>LAST_INCL_NULL</type>
-        <valuefield />
-      </field>
-      <field>
-        <aggregate>tipoidentidadeid</aggregate>
-        <subject>tipoidentidadeid</subject>
-        <type>LAST_INCL_NULL</type>
-        <valuefield />
-      </field>
-      <field>
-        <aggregate>orgaoidentidadeid</aggregate>
-        <subject>orgaoidentidadeid</subject>
-        <type>LAST_INCL_NULL</type>
-        <valuefield />
-      </field>
-      <field>
-        <aggregate>dataemissaoidentidade</aggregate>
-        <subject>dataemissaoidentidade</subject>
-        <type>LAST_INCL_NULL</type>
-        <valuefield />
-      </field>
-      <field>
-        <aggregate>ufidentidadeid</aggregate>
-        <subject>ufidentidadeid</subject>
-        <type>LAST_INCL_NULL</type>
-        <valuefield />
-      </field>
-      <field>
-        <aggregate>tipodocumento</aggregate>
-        <subject>tipodocumento</subject>
-        <type>LAST_INCL_NULL</type>
-        <valuefield />
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>720</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Merge Join</name>
-    <type>MergeJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <join_type>INNER</join_type>
-    <step1>Sort rows 2</step1>
-    <step2>Sort rows 2 2</step2>
-    <keys_1>
-      <key>numerocpf</key>
-    </keys_1>
-    <keys_2>
-      <key>numerocpf</key>
-    </keys_2>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>432</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Sort rows</name>
-    <type>SortRows</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory />
-    <compress>N</compress>
-    <compress_variable />
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>numerocpf</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>560</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Table input (Pegando dados da pessoa no novo banco)</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>selecao-dt</connection>
-    <sql>SELECT
-  id as pessoaid
-, numerocpf as numerocpf
-FROM pessoa
-ORDER BY numerocpf
-limit 30000
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>144</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Table input (Pegando dados dos documentos dos candidatos no banco original)</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>selecao-antigo</connection>
-    <sql>SELECT
-  numerocpf
-, datainscricao
-, numeroidentidade
-, tipoidentidadeid
-, orgaoidentidadeid
-, dataemissaoidentidade
-, ufidentidadeid
-, 1 as tipodocumento
-FROM inscricao
-GROUP BY numerocpf
-		, datainscricao
-		, numeroidentidade
-		, tipoidentidadeid
-		, orgaoidentidadeid
-		, dataemissaoidentidade
-		, ufidentidadeid
-ORDER BY numerocpf, datainscricao
-limit 30000
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>128</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Insert / update 2</name>
+    <name>Insert / update</name>
     <type>InsertUpdate</type>
     <description />
     <distribute>Y</distribute>
@@ -889,32 +565,26 @@ limit 30000
     <update_bypassed>N</update_bypassed>
     <lookup>
       <schema>public</schema>
-      <table>documento</table>
+      <table>pessoa</table>
       <key>
-        <name>pessoaid</name>
-        <field>pessoaid</field>
-        <condition>=</condition>
-        <name2 />
-      </key>
-      <key>
-        <name>numeroidentidade</name>
-        <field>numero</field>
-        <condition>=</condition>
+        <name>numerocpf</name>
+        <field>cpf</field>
+        <condition>LIKE</condition>
         <name2 />
       </key>
       <value>
-        <name>numero</name>
-        <rename>numeroidentidade</rename>
-        <update>N</update>
+        <name>nome</name>
+        <rename>nome_dt</rename>
+        <update>Y</update>
       </value>
       <value>
-        <name>tipodocumentoid</name>
-        <rename>tipodocumento</rename>
-        <update>N</update>
+        <name>datanascimento</name>
+        <rename>datanascimento</rename>
+        <update>Y</update>
       </value>
       <value>
-        <name>pessoaid</name>
-        <rename>pessoaid</rename>
+        <name>cpf</name>
+        <rename>numerocpf</rename>
         <update>N</update>
       </value>
     </lookup>
@@ -927,14 +597,14 @@ limit 30000
       </output>
     </remotesteps>
     <GUI>
-      <xloc>896</xloc>
-      <yloc>208</yloc>
+      <xloc>624</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Sort rows 2</name>
-    <type>SortRows</type>
+    <name>Select values 2</name>
+    <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -943,22 +613,25 @@ limit 30000
       <method>none</method>
       <schema_name />
     </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory />
-    <compress>N</compress>
-    <compress_variable />
-    <unique_rows>N</unique_rows>
     <fields>
-      <field>
-        <name>numerocpf</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>datanascimento</name>
+        <rename>datanascimento</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>dd-MM-yyyy</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
     </fields>
     <attributes />
     <cluster_schema />
@@ -969,14 +642,14 @@ limit 30000
       </output>
     </remotesteps>
     <GUI>
-      <xloc>304</xloc>
-      <yloc>144</yloc>
+      <xloc>432</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Sort rows 2 2</name>
-    <type>SortRows</type>
+    <name>selecao_dt</name>
+    <type>TableInput</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -985,23 +658,15 @@ limit 30000
       <method>none</method>
       <schema_name />
     </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory />
-    <compress>N</compress>
-    <compress_variable />
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>numerocpf</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
+    <connection>selecao-dt</connection>
+    <sql>SELECT nome as nome_dt, numerocpf, datanascimento FROM pessoa
+order by numerocpf asc
+limit 10000</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -1011,8 +676,8 @@ limit 30000
       </output>
     </remotesteps>
     <GUI>
-      <xloc>317</xloc>
-      <yloc>242</yloc>
+      <xloc>256</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

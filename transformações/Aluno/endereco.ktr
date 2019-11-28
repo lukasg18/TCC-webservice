@@ -436,11 +436,11 @@
   <notepads>
   </notepads>
   <connection>
-    <name>identidade-cidada</name>
+    <name>identidade-aluno</name>
     <server>localhost</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>identiade-cidada-v2</database>
+    <database>identidade-aluno</database>
     <port>5432</port>
     <username>postgres</username>
     <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
@@ -487,11 +487,11 @@
     </attributes>
   </connection>
   <connection>
-    <name>selecao-dt</name>
+    <name>identidade-cidada</name>
     <server>localhost</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>identidade_cidada</database>
+    <database>identiade-cidada-v2</database>
     <port>5432</port>
     <username>postgres</username>
     <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
@@ -693,16 +693,12 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>selecao-dt</connection>
+    <connection>identidade-aluno</connection>
     <sql>SELECT
-	endereco.cep,
-	endereco.logradouro,
-	endereco.complemento,
-	endereco.numero,
-	endereco.bairro
+	endereco.cep
+,	endereco.bairro
 FROM endereco
-inner join municipio on (municipio.id = endereco.municipioid)
-group by endereco.cep, endereco.logradouro, endereco.complemento, endereco.numero, endereco.bairro
+group by endereco.cep, endereco.bairro
 limit 1000
 </sql>
     <limit>0</limit>
@@ -793,21 +789,6 @@ limit 1000
       <value>
         <name>cep</name>
         <rename>cep</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>logradouro</name>
-        <rename>logradouro</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>complemento</name>
-        <rename>complemento</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>numero</name>
-        <rename>numero</rename>
         <update>Y</update>
       </value>
       <value>

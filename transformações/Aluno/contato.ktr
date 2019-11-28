@@ -437,6 +437,57 @@
   <notepads>
   </notepads>
   <connection>
+    <name>identidade-aluno</name>
+    <server>localhost</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>identidade-aluno</database>
+    <port>5432</port>
+    <username>postgres</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
+    <servername />
+    <data_tablespace />
+    <index_tablespace />
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>5432</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
     <name>identidade-cidada</name>
     <server>localhost</server>
     <type>POSTGRESQL</type>
@@ -487,146 +538,13 @@
       </attribute>
     </attributes>
   </connection>
-  <connection>
-    <name>selecao-antigo</name>
-    <server>localhost</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>selecao</database>
-    <port>5432</port>
-    <username>postgres</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
-    <servername />
-    <data_tablespace />
-    <index_tablespace />
-    <attributes>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>5432</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
   <order>
-    <hop>
-      <from>Block this step until steps finish</from>
-      <to>Table input (Pegando telefone1 de pessoa no banco de origem)</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Block this step until steps finish 2</from>
-      <to>Table input (Pegando telefone2 de pessoa no banco de origem) </to>
-      <enabled>Y</enabled>
-    </hop>
     <hop>
       <from>Table input (Pegando email de pessoa no banco de origem)</from>
       <to>Insert / update</to>
       <enabled>Y</enabled>
     </hop>
-    <hop>
-      <from>Table input (Pegando telefone1 de pessoa no banco de origem)</from>
-      <to>Insert / update 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Table input (Pegando telefone2 de pessoa no banco de origem) </from>
-      <to>Insert / update 3</to>
-      <enabled>Y</enabled>
-    </hop>
   </order>
-  <step>
-    <name>Block this step until steps finish</name>
-    <type>BlockUntilStepsFinish</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <steps>
-      <step>
-        <name>Insert / update</name>
-        <CopyNr>0</CopyNr>
-      </step>
-    </steps>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>240</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Block this step until steps finish 2</name>
-    <type>BlockUntilStepsFinish</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <steps>
-      <step>
-        <name>Insert / update 2</name>
-        <CopyNr>0</CopyNr>
-      </step>
-    </steps>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>336</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>Insert / update</name>
     <type>InsertUpdate</type>
@@ -682,114 +600,6 @@
     </GUI>
   </step>
   <step>
-    <name>Insert / update 2</name>
-    <type>InsertUpdate</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>identidade-cidada</connection>
-    <commit>100</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema>public</schema>
-      <table>contato</table>
-      <key>
-        <name>telefone1_pessoa</name>
-        <field>contato</field>
-        <condition>=</condition>
-        <name2 />
-      </key>
-      <key>
-        <name>tipocontato</name>
-        <field>tipocontatoid</field>
-        <condition>=</condition>
-        <name2 />
-      </key>
-      <value>
-        <name>contato</name>
-        <rename>telefone1_pessoa</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>tipocontatoid</name>
-        <rename>tipocontato</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>864</xloc>
-      <yloc>240</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Insert / update 3</name>
-    <type>InsertUpdate</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>identidade-cidada</connection>
-    <commit>100</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema>public</schema>
-      <table>contato</table>
-      <key>
-        <name>telefone2_pessoa</name>
-        <field>contato</field>
-        <condition>=</condition>
-        <name2 />
-      </key>
-      <key>
-        <name>tipocontato</name>
-        <field>tipocontatoid</field>
-        <condition>=</condition>
-        <name2 />
-      </key>
-      <value>
-        <name>contato</name>
-        <rename>telefone2_pessoa</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>tipocontatoid</name>
-        <rename>tipocontato</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>864</xloc>
-      <yloc>336</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Table input (Pegando email de pessoa no banco de origem)</name>
     <type>TableInput</type>
     <description />
@@ -800,11 +610,11 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>selecao-antigo</connection>
+    <connection>identidade-aluno</connection>
     <sql>SELECT
   email as email_pessoa
 , 1 as tipocontato
-FROM inscricao
+FROM pessoa
 WHERE email is not null
 GROUP BY email
 ORDER BY email
@@ -825,84 +635,6 @@ limit 30000</sql>
     <GUI>
       <xloc>224</xloc>
       <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Table input (Pegando telefone1 de pessoa no banco de origem)</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>selecao-antigo</connection>
-    <sql>SELECT
-  telefone1 as telefone1_pessoa
-, 2 as tipocontato
-FROM inscricao
-WHERE telefone1 is not null
-GROUP BY telefone1
-ORDER BY telefone1
-limit 30000</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>576</xloc>
-      <yloc>240</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Table input (Pegando telefone2 de pessoa no banco de origem) </name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>selecao-antigo</connection>
-    <sql>SELECT
-  telefone2 as telefone2_pessoa
-, 2 as tipocontato
-FROM inscricao
-WHERE telefone2 is not null
-GROUP BY telefone2
-ORDER BY telefone2
-limit 30000</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>576</xloc>
-      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

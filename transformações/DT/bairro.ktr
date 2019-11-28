@@ -440,7 +440,7 @@
     <server>localhost</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>identiade-cidada-v2</database>
+    <database>identiade-cidada-v3</database>
     <port>5432</port>
     <username>postgres</username>
     <password>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</password>
@@ -708,7 +708,7 @@
 FROM endereco
 inner join municipio on (municipio.id = endereco.municipioid)
 GROUP BY   endereco.bairro, municipio.nome
-limit 1000
+
 </sql>
     <limit>0</limit>
     <lookup />
@@ -745,7 +745,7 @@ limit 1000
 id,
 nome as municipio
 FROM municipio
-limit 1000
+
 </sql>
     <limit>0</limit>
     <lookup />
