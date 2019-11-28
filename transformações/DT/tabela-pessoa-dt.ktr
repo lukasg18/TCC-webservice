@@ -661,7 +661,7 @@
     <connection>selecao-dt</connection>
     <sql>SELECT nome as nome_dt, numerocpf, datanascimento FROM pessoa
 order by numerocpf asc
-limit 10000</sql>
+limit 30000</sql>
     <limit>0</limit>
     <lookup />
     <execute_each_row>N</execute_each_row>
