@@ -7,14 +7,14 @@ export const databaseProviders = [
       type: 'postgres',
       host: process.env.DB_HOST || 'localhost',
       port: 5432,
-      database: process.env.DB_NAME ||  'identiade-cidada-v3',
+      database: process.env.DB_NAME ||  'identiade-cidada-v2',
       username: process.env.DB_USERNAME || 'postgres',
       password: process.env.DB_PASSWORD || '123456',
       entities: [
           __dirname + '/../**/*.entity{.ts,.js}',
       ],
-      dropSchema:true,
-      synchronize:true
+      dropSchema:false,
+      synchronize:false
     }),
   },
 ];
