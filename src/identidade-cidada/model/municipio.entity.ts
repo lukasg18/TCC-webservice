@@ -16,7 +16,7 @@ export class Municipio extends Auditoria {
   @Column({ type: 'varchar' })
   nome: string;
 
-  @ManyToOne(type => Estado, estado => estado.id)
+  @ManyToOne(type => Estado, estado => estado.id, { eager: true })
   @JoinColumn({ name: 'estadoid' })
   @Index('estadoid_endereco_index')
   estado: Estado;

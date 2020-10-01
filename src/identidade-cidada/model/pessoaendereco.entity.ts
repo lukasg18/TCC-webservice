@@ -33,7 +33,7 @@ export class Pessoa_endereco {
   @Index('pessoaid_pessoa_endereco_index')
   pessoa: Pessoa;
 
-  @ManyToOne(type => Endereco, endereco => endereco.id)
+  @ManyToOne(type => Endereco, endereco => endereco.id, { eager: true })
   @JoinColumn({ name: 'enderecoid' })
   @Index('enderecoid_pessoa_endereco_index')
   endereco: Endereco;

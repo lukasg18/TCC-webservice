@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
   <name>job-identidade-cidada</name>
-  <description />
-  <extended_description />
-  <job_version />
+  <description/>
+  <extended_description/>
+  <job_version/>
   <directory>/</directory>
   <created_user>-</created_user>
   <created_date>2019/11/18 20:28:03.432</created_date>
@@ -14,12 +14,12 @@
   <slaveservers>
     </slaveservers>
   <job-log-table>
-    <connection />
-    <schema />
-    <table />
-    <size_limit_lines />
-    <interval />
-    <timeout_days />
+    <connection/>
+    <schema/>
+    <table/>
+    <size_limit_lines/>
+    <interval/>
+    <timeout_days/>
     <field>
       <id>ID_JOB</id>
       <enabled>Y</enabled>
@@ -127,10 +127,10 @@
     </field>
   </job-log-table>
   <jobentry-log-table>
-    <connection />
-    <schema />
-    <table />
-    <timeout_days />
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
     <field>
       <id>ID_BATCH</id>
       <enabled>Y</enabled>
@@ -218,10 +218,10 @@
     </field>
   </jobentry-log-table>
   <channel-log-table>
-    <connection />
-    <schema />
-    <table />
-    <timeout_days />
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
     <field>
       <id>ID_BATCH</id>
       <enabled>Y</enabled>
@@ -284,13 +284,12 @@
     </field>
   </channel-log-table>
   <pass_batchid>N</pass_batchid>
-  <shared_objects_file />
+  <shared_objects_file/>
   <entries>
     <entry>
       <name>START</name>
-      <description />
+      <description/>
       <type>SPECIAL</type>
-      <attributes />
       <start>Y</start>
       <dummy>N</dummy>
       <repeat>N</repeat>
@@ -306,30 +305,28 @@
       <nr>0</nr>
       <xloc>256</xloc>
       <yloc>128</yloc>
-      <attributes_kjc />
     </entry>
     <entry>
       <name>pessoa-aluno</name>
-      <description />
+      <description/>
       <type>TRANS</type>
-      <attributes />
       <specification_method>filename</specification_method>
-      <trans_object_id />
-      <filename>/home/lucasg/Documentos/ifes/TCC/TCC-webservice/transformações/Aluno/tabela-pessoa-aluno.ktr</filename>
-      <transname />
+      <trans_object_id/>
+      <filename>/home/lucas/Documentos/IFES/TCC/TCC-webservice/transformações/Aluno/tabela-pessoa-aluno.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
+      <logfile/>
+      <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
       <loglevel>Basic</loglevel>
       <cluster>N</cluster>
-      <slave_server_name />
+      <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
@@ -344,30 +341,28 @@
       <nr>0</nr>
       <xloc>256</xloc>
       <yloc>256</yloc>
-      <attributes_kjc />
     </entry>
     <entry>
       <name>pessoa-DT</name>
-      <description />
+      <description/>
       <type>TRANS</type>
-      <attributes />
       <specification_method>filename</specification_method>
-      <trans_object_id />
-      <filename>/home/lucasg/Documentos/ifes/TCC/TCC-webservice/transformações/DT/tabela-pessoa-dt.ktr</filename>
-      <transname />
+      <trans_object_id/>
+      <filename>/home/lucas/Documentos/IFES/TCC/TCC-webservice/transformações/DT/tabela-pessoa-dt.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
+      <logfile/>
+      <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
       <loglevel>Basic</loglevel>
       <cluster>N</cluster>
-      <slave_server_name />
+      <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
@@ -381,31 +376,29 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>400</xloc>
-      <yloc>128</yloc>
-      <attributes_kjc />
+      <yloc>112</yloc>
     </entry>
     <entry>
       <name>estado DT</name>
-      <description />
+      <description/>
       <type>TRANS</type>
-      <attributes />
       <specification_method>filename</specification_method>
-      <trans_object_id />
-      <filename>/home/lucasg/Documentos/ifes/TCC/TCC-webservice/transformações/DT/estado.ktr</filename>
-      <transname />
+      <trans_object_id/>
+      <filename>/home/lucas/Documentos/IFES/TCC/TCC-webservice/transformações/DT/estado.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
+      <logfile/>
+      <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
       <loglevel>Basic</loglevel>
       <cluster>N</cluster>
-      <slave_server_name />
+      <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
@@ -420,30 +413,28 @@
       <nr>0</nr>
       <xloc>560</xloc>
       <yloc>48</yloc>
-      <attributes_kjc />
     </entry>
     <entry>
       <name>municipio DT</name>
-      <description />
+      <description/>
       <type>TRANS</type>
-      <attributes />
       <specification_method>filename</specification_method>
-      <trans_object_id />
-      <filename>/home/lucasg/Documentos/ifes/TCC/TCC-webservice/transformações/DT/municipio.ktr</filename>
-      <transname />
+      <trans_object_id/>
+      <filename>/home/lucas/Documentos/IFES/TCC/TCC-webservice/transformações/DT/municipio.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
+      <logfile/>
+      <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
       <loglevel>Basic</loglevel>
       <cluster>N</cluster>
-      <slave_server_name />
+      <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
@@ -458,30 +449,28 @@
       <nr>0</nr>
       <xloc>704</xloc>
       <yloc>48</yloc>
-      <attributes_kjc />
     </entry>
     <entry>
       <name>bairro DT</name>
-      <description />
+      <description/>
       <type>TRANS</type>
-      <attributes />
       <specification_method>filename</specification_method>
-      <trans_object_id />
-      <filename>/home/lucasg/Documentos/ifes/TCC/TCC-webservice/transformações/DT/bairro.ktr</filename>
-      <transname />
+      <trans_object_id/>
+      <filename>/home/lucas/Documentos/IFES/TCC/TCC-webservice/transformações/DT/bairro.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
+      <logfile/>
+      <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
       <loglevel>Basic</loglevel>
       <cluster>N</cluster>
-      <slave_server_name />
+      <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
@@ -496,30 +485,28 @@
       <nr>0</nr>
       <xloc>848</xloc>
       <yloc>48</yloc>
-      <attributes_kjc />
     </entry>
     <entry>
       <name>endereco DT</name>
-      <description />
+      <description/>
       <type>TRANS</type>
-      <attributes />
       <specification_method>filename</specification_method>
-      <trans_object_id />
-      <filename>/home/lucasg/Documentos/ifes/TCC/TCC-webservice/transformações/DT/bairro.ktr</filename>
-      <transname />
+      <trans_object_id/>
+      <filename>/home/lucas/Documentos/ifes/TCC/TCC-webservice/transformações/DT/bairro.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
+      <logfile/>
+      <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
       <loglevel>Basic</loglevel>
       <cluster>N</cluster>
-      <slave_server_name />
+      <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
@@ -534,30 +521,28 @@
       <nr>0</nr>
       <xloc>992</xloc>
       <yloc>48</yloc>
-      <attributes_kjc />
     </entry>
     <entry>
       <name>tipo_documento DT</name>
-      <description />
+      <description/>
       <type>TRANS</type>
-      <attributes />
       <specification_method>filename</specification_method>
-      <trans_object_id />
-      <filename>/home/lucasg/Documentos/ifes/TCC/TCC-webservice/transformações/DT/bairro.ktr</filename>
-      <transname />
+      <trans_object_id/>
+      <filename>/home/lucas/Documentos/IFES/TCC/TCC-webservice/transformações/DT/tipo-documento.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
+      <logfile/>
+      <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
       <loglevel>Basic</loglevel>
       <cluster>N</cluster>
-      <slave_server_name />
+      <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
@@ -572,30 +557,28 @@
       <nr>0</nr>
       <xloc>560</xloc>
       <yloc>128</yloc>
-      <attributes_kjc />
     </entry>
     <entry>
       <name>tipo_contato DT</name>
-      <description />
+      <description/>
       <type>TRANS</type>
-      <attributes />
       <specification_method>filename</specification_method>
-      <trans_object_id />
-      <filename>/home/lucasg/Documentos/ifes/TCC/TCC-webservice/transformações/DT/tipo-contato.ktr</filename>
-      <transname />
+      <trans_object_id/>
+      <filename>/home/lucas/Documentos/IFES/TCC/TCC-webservice/transformações/DT/tipo-documento.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
+      <logfile/>
+      <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
       <loglevel>Basic</loglevel>
       <cluster>N</cluster>
-      <slave_server_name />
+      <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
@@ -610,30 +593,28 @@
       <nr>0</nr>
       <xloc>560</xloc>
       <yloc>224</yloc>
-      <attributes_kjc />
     </entry>
     <entry>
       <name>contato DT</name>
-      <description />
+      <description/>
       <type>TRANS</type>
-      <attributes />
       <specification_method>filename</specification_method>
-      <trans_object_id />
-      <filename>/home/lucasg/Documentos/ifes/TCC/TCC-webservice/transformações/DT/contato.ktr</filename>
-      <transname />
+      <trans_object_id/>
+      <filename>/home/lucas/Documentos/IFES/TCC/TCC-webservice/transformações/DT/contato.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
+      <logfile/>
+      <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
       <loglevel>Basic</loglevel>
       <cluster>N</cluster>
-      <slave_server_name />
+      <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
@@ -648,30 +629,28 @@
       <nr>0</nr>
       <xloc>704</xloc>
       <yloc>224</yloc>
-      <attributes_kjc />
     </entry>
     <entry>
       <name>documento DT</name>
-      <description />
+      <description/>
       <type>TRANS</type>
-      <attributes />
       <specification_method>filename</specification_method>
-      <trans_object_id />
-      <filename>/home/lucasg/Documentos/ifes/TCC/TCC-webservice/transformações/DT/documento.ktr</filename>
-      <transname />
+      <trans_object_id/>
+      <filename>/home/lucas/Documentos/IFES/TCC/TCC-webservice/transformações/DT/documento.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
+      <logfile/>
+      <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
       <loglevel>Basic</loglevel>
       <cluster>N</cluster>
-      <slave_server_name />
+      <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
@@ -686,30 +665,28 @@
       <nr>0</nr>
       <xloc>704</xloc>
       <yloc>128</yloc>
-      <attributes_kjc />
     </entry>
     <entry>
       <name>pessoa_endereco DT</name>
-      <description />
+      <description/>
       <type>TRANS</type>
-      <attributes />
       <specification_method>filename</specification_method>
-      <trans_object_id />
-      <filename>/home/lucasg/Documentos/ifes/TCC/TCC-webservice/transformações/DT/pessoa_endereco.ktr</filename>
-      <transname />
+      <trans_object_id/>
+      <filename>/home/lucas/Documentos/IFES/TCC/TCC-webservice/transformações/DT/pessoa_endereco.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
+      <logfile/>
+      <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
       <loglevel>Basic</loglevel>
       <cluster>N</cluster>
-      <slave_server_name />
+      <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
@@ -722,32 +699,30 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>848</xloc>
+      <xloc>992</xloc>
       <yloc>128</yloc>
-      <attributes_kjc />
     </entry>
     <entry>
       <name>pessoa_contato DT</name>
-      <description />
+      <description/>
       <type>TRANS</type>
-      <attributes />
       <specification_method>filename</specification_method>
-      <trans_object_id />
-      <filename>/home/lucasg/Documentos/ifes/TCC/TCC-webservice/transformações/DT/pessoa_contato.ktr</filename>
-      <transname />
+      <trans_object_id/>
+      <filename>/home/lucas/Documentos/IFES/TCC/TCC-webservice/transformações/DT/pessoa_contato.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
+      <logfile/>
+      <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
       <loglevel>Basic</loglevel>
       <cluster>N</cluster>
-      <slave_server_name />
+      <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
@@ -762,30 +737,28 @@
       <nr>0</nr>
       <xloc>848</xloc>
       <yloc>224</yloc>
-      <attributes_kjc />
     </entry>
     <entry>
       <name>municipio aluno</name>
-      <description />
+      <description/>
       <type>TRANS</type>
-      <attributes />
       <specification_method>filename</specification_method>
-      <trans_object_id />
-      <filename>/home/lucasg/Documentos/ifes/TCC/TCC-webservice/transformações/Aluno/municipio.ktr</filename>
-      <transname />
+      <trans_object_id/>
+      <filename>/home/lucas/Documentos/IFES/TCC/TCC-webservice/transformações/Aluno/municipio.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
+      <logfile/>
+      <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
       <loglevel>Basic</loglevel>
       <cluster>N</cluster>
-      <slave_server_name />
+      <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
@@ -800,30 +773,28 @@
       <nr>0</nr>
       <xloc>144</xloc>
       <yloc>368</yloc>
-      <attributes_kjc />
     </entry>
     <entry>
       <name>bairro aluno</name>
-      <description />
+      <description/>
       <type>TRANS</type>
-      <attributes />
       <specification_method>filename</specification_method>
-      <trans_object_id />
-      <filename>/home/lucasg/Documentos/ifes/TCC/TCC-webservice/transformações/Aluno/bairro.ktr</filename>
-      <transname />
+      <trans_object_id/>
+      <filename>/home/lucas/Documentos/IFES/TCC/TCC-webservice/transformações/Aluno/bairro.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
+      <logfile/>
+      <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
       <loglevel>Basic</loglevel>
       <cluster>N</cluster>
-      <slave_server_name />
+      <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
@@ -838,30 +809,28 @@
       <nr>0</nr>
       <xloc>144</xloc>
       <yloc>480</yloc>
-      <attributes_kjc />
     </entry>
     <entry>
       <name>endereco aluno 2</name>
-      <description />
+      <description/>
       <type>TRANS</type>
-      <attributes />
       <specification_method>filename</specification_method>
-      <trans_object_id />
-      <filename>/home/lucasg/Documentos/ifes/TCC/TCC-webservice/transformações/Aluno/endereco.ktr</filename>
-      <transname />
+      <trans_object_id/>
+      <filename>/home/lucas/Documentos/IFES/TCC/TCC-webservice/transformações/Aluno/endereco.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
+      <logfile/>
+      <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
       <loglevel>Basic</loglevel>
       <cluster>N</cluster>
-      <slave_server_name />
+      <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
@@ -876,30 +845,28 @@
       <nr>0</nr>
       <xloc>144</xloc>
       <yloc>608</yloc>
-      <attributes_kjc />
     </entry>
     <entry>
       <name>contato aluno</name>
-      <description />
+      <description/>
       <type>TRANS</type>
-      <attributes />
       <specification_method>filename</specification_method>
-      <trans_object_id />
-      <filename>/home/lucasg/Documentos/ifes/TCC/TCC-webservice/transformações/Aluno/contato.ktr</filename>
-      <transname />
+      <trans_object_id/>
+      <filename>/home/lucas/Documentos/IFES/TCC/TCC-webservice/transformações/Aluno/contato.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
+      <logfile/>
+      <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
       <loglevel>Basic</loglevel>
       <cluster>N</cluster>
-      <slave_server_name />
+      <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
@@ -914,30 +881,28 @@
       <nr>0</nr>
       <xloc>256</xloc>
       <yloc>368</yloc>
-      <attributes_kjc />
     </entry>
     <entry>
       <name>pessoa contato aluno</name>
-      <description />
+      <description/>
       <type>TRANS</type>
-      <attributes />
       <specification_method>filename</specification_method>
-      <trans_object_id />
-      <filename>/home/lucasg/Documentos/ifes/TCC/TCC-webservice/transformações/DT/pessoa_contato.ktr</filename>
-      <transname />
+      <trans_object_id/>
+      <filename>/home/lucas/Documentos/IFES/TCC/TCC-webservice/transformações/DT/pessoa_contato.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
+      <logfile/>
+      <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
       <loglevel>Basic</loglevel>
       <cluster>N</cluster>
-      <slave_server_name />
+      <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
@@ -952,30 +917,28 @@
       <nr>0</nr>
       <xloc>256</xloc>
       <yloc>480</yloc>
-      <attributes_kjc />
     </entry>
     <entry>
       <name>pessoa endereco</name>
-      <description />
+      <description/>
       <type>TRANS</type>
-      <attributes />
       <specification_method>filename</specification_method>
-      <trans_object_id />
-      <filename>/home/lucasg/Documentos/ifes/TCC/TCC-webservice/transformações/DT/pessoa_endereco.ktr</filename>
-      <transname />
+      <trans_object_id/>
+      <filename>/home/lucas/Documentos/IFES/TCC/TCC-webservice/transformações/DT/pessoa_endereco.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
+      <logfile/>
+      <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
       <loglevel>Basic</loglevel>
       <cluster>N</cluster>
-      <slave_server_name />
+      <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
@@ -990,7 +953,6 @@
       <nr>0</nr>
       <xloc>144</xloc>
       <yloc>704</yloc>
-      <attributes_kjc />
     </entry>
   </entries>
   <hops>
@@ -1060,15 +1022,6 @@
     <hop>
       <from>tipo_contato DT</from>
       <to>contato DT</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>documento DT</from>
-      <to>pessoa_endereco DT</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1155,6 +1108,15 @@
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>endereco DT</from>
+      <to>pessoa_endereco DT</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>

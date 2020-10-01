@@ -8,7 +8,7 @@ export class Bairro extends Auditoria {
   @Column({type:"varchar"})
   nome: string;
 
-  @ManyToOne(type => Municipio, municipio => municipio.id)
+  @ManyToOne(type => Municipio, municipio => municipio.id, { eager: true })
   @Index('municipioid_index')
   @JoinColumn({ name: 'municipioid' })
   municipio: Municipio;

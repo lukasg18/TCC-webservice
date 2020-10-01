@@ -25,10 +25,10 @@ export class Pessoa extends Auditoria {
   @Column({ name: 'datanascimento', type: 'date' })
   dataNascimento: Date;
 
-  @OneToMany(type => Pessoa_endereco, pessoa_endereco => pessoa_endereco.enderecoid)
+  @OneToMany(type => Pessoa_endereco, pessoa_endereco => pessoa_endereco.pessoa, { eager: true })
   pessoa_endereco: Pessoa_endereco[];
 
-  @ManyToMany(type => Contato)
+  @ManyToMany(type => Contato, { eager: true })
   @JoinTable({
     name: 'pessoa_contato',
     joinColumn: { name: 'pessoaid', referencedColumnName: 'id' },

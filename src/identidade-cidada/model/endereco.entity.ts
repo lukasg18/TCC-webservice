@@ -20,10 +20,10 @@ export class Endereco extends Auditoria {
   @Column({ type: "int", nullable: true })
   numero: number;
 
-  @OneToMany(type => Pessoa_endereco, pessoa_endereco => pessoa_endereco.enderecoid)
+  @OneToMany(type => Pessoa_endereco, pessoa_endereco => pessoa_endereco.endereco)
   pessoa_endereco: Pessoa_endereco[];
 
-  @ManyToOne(type => Bairro, bairro => bairro.endereco)
+  @ManyToOne(type => Bairro, bairro => bairro.endereco, { eager: true })
   @JoinColumn({name:"bairroid"})
   @Index("bairro_index")
   bairro: string;
