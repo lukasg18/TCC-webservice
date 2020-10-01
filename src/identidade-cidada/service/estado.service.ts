@@ -9,4 +9,8 @@ export class PessoaService {
     return await Estado.find();
   }
 
+  async getOne(id: number): Promise<Estado> {
+    return await Estado.findOne({ id: id });
+  }
+
 }
