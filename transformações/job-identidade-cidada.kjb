@@ -376,7 +376,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>400</xloc>
-      <yloc>128</yloc>
+      <yloc>112</yloc>
     </entry>
     <entry>
       <name>estado DT</name>
@@ -961,7 +961,7 @@
       <to>pessoa-DT</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
     </hop>

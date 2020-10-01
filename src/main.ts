@@ -19,7 +19,7 @@ async function bootstrap() {
     .setTitle( pacote.name )
     .setDescription( pacote.description )
     .setVersion( pacote.version )
-    .addTag( 'selecao-aluno' )
+    .addTag( 'Identidade-Cidada' )
     .addTag( 'health-check' )
     .setSchemes( schema )
     .build();
