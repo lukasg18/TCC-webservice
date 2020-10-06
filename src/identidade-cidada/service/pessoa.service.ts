@@ -6,10 +6,6 @@ export class PessoaService {
   constructor() {}
 
   async getAll(qtd: number): Promise<Pessoa[]> {
-    return await Pessoa.find({ take: qtd });
-  }
-
-  async getOne(id: number): Promise<Pessoa> {
-    return await Pessoa.findOne({ id: id });
+    return await Pessoa.find({take: qtd});
   }
 }
