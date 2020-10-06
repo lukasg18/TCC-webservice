@@ -7,6 +7,8 @@ COPY package.json tsconfig.json /usr/app/
 RUN npm install
 COPY src/ /usr/app/src
 
+RUN npm run build
+
 EXPOSE 3000
 
-CMD ["npm","run", "start"]
+CMD ["npm","run", "start:prod"]
